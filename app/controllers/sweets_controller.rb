@@ -38,6 +38,6 @@ private
 
   def sweet_params
     params.require(:sweet).
-      permit(:name, :description, :location, :price, :starts_at)
+      permit(:name, :description, :origin, :price, :validity)
   end
 end
