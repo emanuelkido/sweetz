@@ -1,0 +1,18 @@
+<%= form_with(model: sweet) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, autofocus: true %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, rows: 5 %>
+
+  <%= f.label :origin %>
+  <%= f.text_field :origin %>
+
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+
+  <%= f.label :validity %>
+  <%= f.datetime_select :validity, {ampm: true}, {class: "datetime"} %>
+
+  <%= f.submit %>
+<% end %>

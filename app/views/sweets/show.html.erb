@@ -1,0 +1,20 @@
+<section class="sweet-details">
+  <div class="details">
+    <h1><%= @sweet.name %></h1>
+    <h2>
+      <%= price(@sweet) %>
+    </h2>
+    <p> Validity:
+      <%= day_and_time(@sweet) %>
+    </p>
+    <p>
+      <%= @sweet.description %>
+    </p>
+  </div>
+</section>
+
+<section class="admin">
+  <%= link_to "Edit", edit_sweet_path(@sweet), class: "button" %>
+  <%= link_to "Delete", @sweet, class: "button",
+        data: { turbo_method: :delete, turbo_confirm: "Really?!" } %>
+</section>
