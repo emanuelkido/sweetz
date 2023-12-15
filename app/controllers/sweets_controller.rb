@@ -1,24 +1,18 @@
 class SweetsController < ApplicationController
+  before_action :fetch_sweet, only: %i[show edit update destroy]
+
   def index
     @sweets = Sweet.all
   end
 
-  def show
-    @sweet = Sweet.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @sweet = Sweet.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @sweet = Sweet.find(params[:id])
-
-   if @sweet.update(sweet_params)
-    redirect_to @sweet
-   else
-   	render :edit
-   end
+  return redirect_to @sweet if @sweet.update(sweet_params)
+    
+	render :edit
   end
 
   def new
@@ -28,15 +22,12 @@ class SweetsController < ApplicationController
   def create
     @sweet = Sweet.new(sweet_params)
 
-    if @sweet.save
-      redirect_to @sweet
-    else
-      render :new
-    end
+    return  redirect_to @sweet if @sweet.save
+    
+    render :new
   end
 
   def destroy
-    @sweet = Sweet.find(params[:id])
     @sweet.destroy
     redirect_to sweets_url, status: :see_other
   end
@@ -46,5 +37,9 @@ private
   def sweet_params
     params.require(:sweet).
       permit(:name, :description, :origin, :price, :validity)
+  end
+
+  def fetch_sweet
+    @sweet = Sweet.find(params[:id])
   end
 end
