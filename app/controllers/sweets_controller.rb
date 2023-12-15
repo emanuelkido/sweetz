@@ -13,8 +13,12 @@ class SweetsController < ApplicationController
 
   def update
     @sweet = Sweet.find(params[:id])
-    @sweet.update(sweet_params)
+
+   if @sweet.update(sweet_params)
     redirect_to @sweet
+   else
+   	render :edit
+   end
   end
 
   def new
@@ -23,8 +27,12 @@ class SweetsController < ApplicationController
 
   def create
     @sweet = Sweet.new(sweet_params)
-    @sweet.save
-    redirect_to @sweet
+
+    if @sweet.save
+      redirect_to @sweet
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -32,7 +40,6 @@ class SweetsController < ApplicationController
     @sweet.destroy
     redirect_to sweets_url, status: :see_other
   end
-
 
 private
 

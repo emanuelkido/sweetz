@@ -1,0 +1,15 @@
+<% @sweets.each do |sweet| %>
+  <section class="sweet">
+    <div class="summary">
+      <h2><%= link_to sweet.name, sweet %></h2>
+    <p>  Validity: <%= day_and_time(sweet) %> </p> 
+    <p> Origin: <%= sweet.origin %></p>
+      <span class="price">
+      Price:  <%= price(sweet) %>
+      </span>
+      <p>
+        <%= truncate(sweet.description, length: 35, separator: ' ') %>
+      </p>
+    </div>
+  </section>
+<% end %>
